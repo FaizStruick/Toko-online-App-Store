@@ -5,6 +5,7 @@ import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container"
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 const HomePage =  async () => {
 
