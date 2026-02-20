@@ -16,6 +16,14 @@ const Galery: React.FC<GaleryProps> = ({
     // Kita buat state untuk mengatur index yang aktif
     const [selectedIndex, setSelectedIndex] = useState(0);
 
+    if (!images || images.length === 0) {
+        return (
+            <div className="aspect-square relative w-full h-full sm:rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center text-gray-400">
+                No Image Available
+            </div>
+        )
+    }
+
     return (
         <TabGroup 
             as="div" 

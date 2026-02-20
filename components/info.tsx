@@ -11,9 +11,9 @@ interface InfoProps {
 }
 
 const Info: React.FC<InfoProps> = ({ data }) => {
-    const URL = typeof window !== "undefined" ? `${window.location.origin}/product/${data.id}` : "";
+    const URL = typeof window !== "undefined" ? `${window.location.origin}/product/${data?.id}` : "";
     const telp = process.env.NEXT_PUBLIC_TELP;
-    const pesan = encodeURIComponent(`Halo, saya tertarik membeli ${data.name} dengan harga ${data.price}. Link produk: ${URL}`);
+    const pesan = encodeURIComponent(`Halo, saya tertarik membeli ${data?.name} dengan harga ${data?.price}. Link produk: ${URL}`);
 
     const link = `https://wa.me/${telp}?text=${pesan}`;
 
@@ -25,7 +25,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
                 <div className="mt-3 flex items-center justify-between">
                     <div className="flex flex-col">
                         <div className="text-2xl font-stretch-50% text-gray-700">
-                            <Currency value={data.price} />
+                            <Currency value={data?.price} />
                         </div>
                     </div>
                 </div>
