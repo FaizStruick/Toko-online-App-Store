@@ -1,9 +1,17 @@
 import { Banner } from "@/types";
 
-const URL = "http://localhost:3001/api/3e05ecf7-04a4-46e4-a858-bf5f3fadca98/banners";
+// Gunakan process.env agar saat di Vercel dia pakai link Vercel Admin, 
+// dan saat di laptop dia pakai localhost.
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/banners`;
 
 const getBanner = async (id: string): Promise<Banner> => {
-    const res = await fetch(`${URL}/${id}`);
+    // Tambahkan ID ke akhir URL agar mengambil banner yang spesifik
+    const res = await fetch(`${URL}/${id}`, { cache: 'no-store' });
+    
+    if (!res.ok) {
+        throw new Error("Gagal mengambil data banner");
+    }
+
     return res.json();
 };
 
