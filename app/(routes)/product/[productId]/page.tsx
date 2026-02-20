@@ -6,6 +6,7 @@ import Container from "@/components/ui/container";
 import Info from "@/components/info";
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 interface ProductPageProps {
     params: Promise<{
