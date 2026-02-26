@@ -1,5 +1,6 @@
 'use client'
 
+import { motion  } from "framer-motion";
 import { Product } from "@/types";
 import Image from "next/image";
 import IconButton from "./icon-button";
@@ -12,6 +13,7 @@ import usePreviewModal from "@/hooks/use-preview-modal";
 interface ProductCardProps {
     data: Product;
 }
+
 
 const ProductCard: React.FC<ProductCardProps> = ({
     data
@@ -32,6 +34,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
 
     return (
+        <motion.div
+        whileTap = {{scale: 0.95}}
+        className="group bg-white rounded-xl border p-3 space-y-3"
+        whileHover={{ y: -5}}
+        transition={{ type: "spring", stiffness: 400, damping: 17}}
+        >
         <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
             {/* Images dan action*/}
             <div className="aspect-square rounded-xl bg-gray-100 relative overflow-hidden">
@@ -58,6 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <Currency value={data?.price} />
             </div>
         </div>
+        </motion.div>
     );
 }
 

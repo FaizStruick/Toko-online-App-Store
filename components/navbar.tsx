@@ -12,11 +12,14 @@ const Navbar = async () => {
     return (
         <nav className="sticky top-0 z-50 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-sm transition-all">
                 <Container>
-                    <div className="relative px-4 sm:px-6 lg:px-8 flex h-20 items-center">
+                    <div className="relative px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:h-20 items-start md:items-center py-4 md:py-0">
                     <Link href="/" className="flex gap-x-2 transition-transform hover:scale-105 active:scale-95">
                 <p className="text-xl font-bold uppercase tracking-wider">Toko <span className="text-blue-400">Faiz Market</span></p>
                 </Link>
+
+                <div className="w-full md:ml-8 overflow-x-auto no-scrollbar">
                 <MainNav data={categories} />
+                </div>
                 </div>
                 </Container>
         </nav>
