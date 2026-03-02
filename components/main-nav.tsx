@@ -38,7 +38,7 @@ const MainNav: React.FC<MainNavProps> = ({
                         <motion.div
                         layoutId="activeTab"
                         className="absolute bottom-0 left-0 right-0 h-[2px] bg-black"
-                        transition={{type: "spring ", stiffness: 300, damping: 30}}
+                        transition={{type: "spring", stiffness: 300, damping: 30}}
                         />
                     )}
                 </Link>

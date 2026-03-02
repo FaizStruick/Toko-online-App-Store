@@ -43,6 +43,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
             {/* Images dan action*/}
             <div className="aspect-square rounded-xl bg-gray-100 relative overflow-hidden">
+                <div className="absolute top-3 left-3 z-10">
+                    <span className="bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercae tracking-widest text-black shadow-sm">
+                        New Arrival
+                    </span>
+                </div>
                 <Image alt="Image" 
                 src={data?.images?.[0]?.url}
                 fill
