@@ -1,25 +1,34 @@
-import getBanner from "@/actions/get-banner.";
+import getBanner from "@/actions/get-banner";
 import getProducts from "@/actions/get-products";
 import Banner from "@/components/banner";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container"
 
 export const revalidate = 0;
-export const dynamic = 'force-dynamic';
 
 const HomePage =  async () => {
 
-    const product = await getProducts({isFeatured: true});
+    const productsData = await getProducts({isFeatured: true});
+    const bannerData = getBanner("c74f18d7-ed7a-428a-8a42-490e093d67e7");
 
-    const banner = await getBanner("732817ef-a226-4a3a-b1d9-b749b9e04381");
+    const [product, banner] = await Promise.all([productsData, bannerData]);
 
     return (
         <Container>
-            <div className="space-y-10 py-10">
-                <Banner data={banner} />
-            <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
-                <ProductList title="Product unggulan" items={product} />
-            </div>
+            <div className="space-y-10 pb-10">
+                <div className="pt-4">
+                </div>
+                {banner? (
+                    <Banner data={banner} />
+                ) : (
+                    <div className="h-[300px] w-full bg-gray-100 animate-pulse rounded-xl flex items-center justify-center">
+                            <p className="text-gray-400">Banner belum diatur di Admin</p>
+                        </div>
+                )}
+
+                <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+                    <ProductList title="Product unggulan" items={product} />
+                </div>
             </div>
         </Container>
     )
