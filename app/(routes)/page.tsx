@@ -26,7 +26,7 @@ const HomePage =  async () => {
                         </div>
                 )}
 
-                <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+                <div className="px-4 sm:px-6 lg:px-8">
                     <ProductList title="Product unggulan" items={product} />
                 </div>
             </div>

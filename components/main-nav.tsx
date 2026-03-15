@@ -22,24 +22,20 @@ const MainNav: React.FC<MainNavProps> = ({
     }))
 
     return (
-        <nav className="mx-4 flex items-center space-x-4 lg:space-x-6 overflow-x-auto pb-2 md:pd-0 no-scrollbar">
+        <nav className="mx-6 flex items-center space-x-4 lg:space-x-8">
             {routes.map((route) => (
                 <Link 
                     key={route.href}
                     href={route.href}
                     className={cn(
-                        "text-sm font-medium transition-colors hover:text-black whitespace-nowrap relative py-1",
+                        "text-sm font-medium transition-all duration-200 hover:text-black relative py-1",
                         route.active ? "text-black" : "text-neutral-500"
                     )}
                 >
                     {route.label}
 
                     {route.active && (
-                        <motion.div
-                        layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-black"
-                        transition={{type: "spring", stiffness: 300, damping: 30}}
-                        />
+                        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black rounded-full"/>
                     )}
                 </Link>
             ))}
