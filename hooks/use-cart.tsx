@@ -1,6 +1,7 @@
 import { Product } from "@/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { toast } from 'react-hot-toast';
 
 interface CartStore {
     items: Product[];
@@ -17,15 +18,15 @@ const useCart = create<CartStore> ()(
             const existingItem = currentItems.find((item) => item.id === data.id);
 
             if(existingItem){
-                return alert("Barang sudah ada di keranjang!");
+                return toast("Barang sudah ada di keranjang!");
             }
 
             set({items: [...get().items, data]});
-            alert("Berhasil menambah barang ke keranjang");
+            toast.success("Berhasil menambah barang ke keranjang");
         },
         removeItem: (id: string) => {
             set({ items: [...get().items.filter((item) => item.id !== id)]});
-            alert("Barang dihapus dari keranjang");
+            toast.success("Barang dihapus dari keranjang");
         },
         removeAll: () => set({ items: [] }),
     }), {

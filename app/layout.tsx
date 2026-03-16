@@ -4,7 +4,8 @@ import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Suspense } from "react";
-import ModalProvider from "@/provider/modal-provider";
+import ModalProvider from "@/providers/modal-provider";
+import ToastProvider from "@/providers/toast-provider";
 
 const font = Urbanist({
   variable: "--font-geist-sans",
@@ -16,7 +17,6 @@ export const metadata: Metadata = {
   description: "Toko online dengan Next.js",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToastProvider />
         <ModalProvider />
         <Suspense fallback={<div className="h-20 w-full bg-white border-b" />}>
         <Navbar />

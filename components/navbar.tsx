@@ -1,4 +1,3 @@
-'use client'
 
 import Link from "next/link";
 import Container from "./ui/container";
@@ -21,8 +20,12 @@ const Navbar =  async () => {
                     <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
                 <p className="text-2xl font-bold tracking-tighter italic">Toko <span className="text-blue-600">Faiz Market</span></p>
                 </Link>
+                
                 <MainNav data={categories} />
+
+                <div className="ml-auto flex items-center gap-x-4">
                 <NavbarActions />
+                </div>
                 </div>
             </Container>
         </div>
