@@ -21,11 +21,11 @@ const Navbar =  async () => {
                 <p className="text-2xl font-bold tracking-tighter italic"><span className="hidden min-[380px]:inline">Toko</span> Faiz<span className="text-blue-600"> Market</span></p>
                 </Link>
                 
-                <div className="hidden md:block">
+                <div className="flex-1 px-4 overflow-x-auto no-scrollbar">
                 <MainNav data={categories} />
                 </div>
 
-                <div className="ml-auto flex items-center gap-x-4">
+                <div className="flex items-center gap-x-2 shrink-0">
                 <NavbarActions />
                 </div>
                 </div>
