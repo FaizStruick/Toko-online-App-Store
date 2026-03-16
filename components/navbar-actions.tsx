@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from "framer-motion";
 import useCart from "@/hooks/use-cart";
 import { ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -18,9 +19,13 @@ const NavbarActions = () => {
 
     return(
         <div className="ml-auto flex items-center gap-x-4">
-            <button
+            <motion.button
+            key={cart.items.length}
+            initial={{scale: 1}}
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 0.3 }}
             onClick={() => router.push("/cart")}
-            className="relative flex items-center rounded-full bg-black px-4 py-2 hover:bg-blue-700 transition"
+            className="flex items-center rounded-full bg-black px-4 py-2"
             >
                 <ShoppingBag size={20} color="white"/>
                 <span className="ml-2 text-sm font-medium text-white">
@@ -28,13 +33,8 @@ const NavbarActions = () => {
                 </span>
         
                 {/* Efek Berdenyut jika ada barang */}
-                {cart.items.length > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                </span>
-        )}
-            </button>
+                {cart.items.length}
+                </motion.button>
         </div>
     );
 }
