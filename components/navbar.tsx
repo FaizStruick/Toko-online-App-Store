@@ -18,10 +18,12 @@ const Navbar =  async () => {
                 <Container>
                     <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center">
                     <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
-                <p className="text-2xl font-bold tracking-tighter italic">Toko <span className="text-blue-600">Faiz Market</span></p>
+                <p className="text-2xl font-bold tracking-tighter italic"><span className="hidden min-[380px]:inline">Toko</span> Faiz<span className="text-blue-600"> Market</span></p>
                 </Link>
                 
+                <div className="hidden md:block">
                 <MainNav data={categories} />
+                </div>
 
                 <div className="ml-auto flex items-center gap-x-4">
                 <NavbarActions />
