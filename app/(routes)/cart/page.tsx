@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/container";
 import useCart from "@/hooks/use-cart";
-import CartItem from "@/components/cart-item";
-import Summary from "@/components/summary";
+import CartItem from "./components/cart-item";
+import Summary from "./components/summary";
 import { ShoppingBag, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

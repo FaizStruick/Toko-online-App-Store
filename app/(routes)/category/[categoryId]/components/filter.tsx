@@ -1,0 +1,74 @@
+'use client'
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Color, Size } from "@/types"
+import { DOMVisualElement } from "framer-motion";
+import { div } from "framer-motion/client";
+import { useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
+
+interface FilterProps {
+    data: (Size | Color)[];
+    name: string;
+    valueKey: string;
+}
+
+const Filter: React.FC<FilterProps> = ({
+    data,
+    name,
+    valueKey
+}) => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const selectedValue = searchParams.get(valueKey);
+
+    const onClick = (id: string) => {
+        const current = qs.parse(searchParams.toString());
+        
+        const query = {
+            ...current,
+            [valueKey]: id
+        };
+
+        if(current[valueKey] === id){
+            query[valueKey] = null;
+        }
+
+        const url = qs.stringifyUrl({
+            url: window.location.pathname,
+            query
+        }, { skipNull: true });
+
+        router.push(url);
+    };
+
+    return (
+        <div className="mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {name}
+            </h3>
+            <hr className="my-4 border-gray-200 dark:border-neutral-800"/>
+            <div className="flex flex-wrap gap-2">
+                {data.map((filter) => (
+                    <div key={filter.id} className="flex items-center">
+                        <Button
+                            variant={selectedValue === filter.id ? "default" : "outline"}
+                            size="sm"
+                            className={cn(
+                                "rounded-md text-sm",
+                                selectedValue === filter.id && "bg-black text-white dark:bg-white dark:text-black"
+                            )}
+                            onClick={() => onClick(filter.id)}
+                        >
+                            {filter.name}
+                        </Button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Filter;
