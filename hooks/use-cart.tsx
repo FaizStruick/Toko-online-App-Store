@@ -37,10 +37,12 @@ const useCart = create<CartStore> ()(
                 toast.success("Berhasil menambah barang ke keranjang");
             }
         },
+
         removeItem: (id: string) => {
             set({ items: get().items.filter((item) => item.id !== id) });
             toast.success("Produk dihapus dari keranjang")
         },
+
         updateQuantity: (id: string, quantity: number) => {
             if (quantity <= 0) {
                 get().removeItem(id);
@@ -53,6 +55,7 @@ const useCart = create<CartStore> ()(
                 ),
             });
         },
+        
         removeAll: () => set({ items: [] }),
     }),
     {

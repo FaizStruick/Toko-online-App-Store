@@ -18,10 +18,10 @@ const Galery: React.FC<GaleryProps> = ({
 
     if (!images || images.length === 0) {
         return (
-            <div className="aspect-square relative w-full h-full sm:rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center text-gray-400">
-                No Image Available
+            <div className="aspect-square relative w-full h-full rounded-2xl border border-neutral-200/80 dark:border-neutral-800 overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-xs text-neutral-400 dark:text-neutral-500">
+                Tidak ada gambar
             </div>
-        )
+        );
     }
 
     return (
@@ -31,8 +31,8 @@ const Galery: React.FC<GaleryProps> = ({
             selectedIndex={selectedIndex} // Index yang aktif
             onChange={setSelectedIndex}   // Fungsi saat thumbnail diklik
         >
-            {/* List Thumbnail */}
-            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+            {images.length > 1 && (
+            <div className="mx-auto mt-4 hidden w-full max-w-2xl sm:block lg:max-w-none">
                 <TabList className="grid grid-cols-4 gap-6">
                     {images.map((image, index) => (
                         <GalleryTab 
@@ -42,25 +42,27 @@ const Galery: React.FC<GaleryProps> = ({
                     ))}
                 </TabList>
             </div>
+            )}
 
             {/* Gambar Utama */}
             <TabPanels className="aspect-square w-full">
-                {images.map((image) => (
+                {images.map((image, index) => (
                     <TabPanel key={image.id}>
-                        <div className="aspect-square relative w-full h-full sm:rounded-lg overflow-hidden bg-gray-100">
+                        <div className="aspect-square relative w-full h-full sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-neutral-800/80 border border-neutral-200/60 dark:border-neutral-800">
                             <Image 
                                 fill
                                 src={image.url}
                                 alt="Product Image"
                                 className="object-cover object-center"
-                                priority={true} // Agar gambar utama di-load lebih cepat
+                                priority={index === 0}
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
                     </TabPanel>
                 ))}
             </TabPanels>
         </TabGroup>
-    )
-}
+    );
+};
 
 export default Galery;
